@@ -9,8 +9,8 @@
 #include <SoftwareSerial.h>
 #include "BtStackTypes.h"
 
-#define PC_SERIAL_BAUD 9600
-#define BT_SERIAL_BAUD 115200
+#define PC_SERIAL_BAUD 115200
+#define BT_SERIAL_BAUD 9600
 
 // Hardware descriptors
 SoftwareSerial BTSerial(10, 11);   // RX, TX
@@ -25,6 +25,8 @@ void setup()
 {
   Serial.begin(PC_SERIAL_BAUD);    // serial link to PC
   BTSerial.begin(BT_SERIAL_BAUD);  // serial link to BT module
+  
+  Serial.println("Welcome to the KFP tester");
 }
 
 void loop() 
@@ -66,7 +68,7 @@ void loop()
             case(SLIP_ESC_END):
               recvFrame.b8[frIndex] = SLIP_END;
               break;
-            case(SLIP_ESC_END):
+            case(SLIP_ESC_ESC):
               recvFrame.b8[frIndex] = SLIP_ESC;
               break;
             default:
@@ -84,7 +86,7 @@ void loop()
           // standard character store
           recvFrame.b8[frIndex] = incoming;
           frIndex++;
-          Serial.print((char) recvFrame.b8[frIndex]);
+          //Serial.print((char) recvFrame.b8[frIndex]);
         }
         break;      
     }
