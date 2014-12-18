@@ -9,6 +9,7 @@
 #include <SoftwareSerial.h>
 #include "BtStackTypes.h"
 
+// Change these values below to your liking to select correct baud rates
 #define PC_SERIAL_BAUD 115200
 #define BT_SERIAL_BAUD 9600
 
