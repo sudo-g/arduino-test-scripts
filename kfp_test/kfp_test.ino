@@ -68,9 +68,11 @@ void loop()
           {
             case(SLIP_ESC_END):
               recvFrame.b8[frIndex] = SLIP_END;
+              frIndex++;
               break;
             case(SLIP_ESC_ESC):
               recvFrame.b8[frIndex] = SLIP_ESC;
+              frIndex++;
               break;
             default:
               break;  // invalid post escape character
